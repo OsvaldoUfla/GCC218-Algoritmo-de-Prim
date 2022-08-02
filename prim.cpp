@@ -49,6 +49,9 @@ int n;
 // numero de arestas
 int m;
 
+//acréscimo na AGM
+int acrescimo =999999;
+
 // funcao que atualiza a fila de prioridades
 void atualizaFila(int u)
 {
@@ -85,9 +88,18 @@ int prim()
 
         int w = -u.first; // retirando o negativo cadastrado na heap
         int v = -u.second;
-     
+
+        
         if(!explorado[v])
         {
+            ii ku = Q.top(); // O(1)
+            int kw = -ku.first; // retirando o negativo cadastrado na heap
+            int kv = -ku.second;
+            if((kw - w) < acrescimo){
+            
+              acrescimo = (kw - w);
+            
+            }
             resultado += w;         
             atualizaFila(v); // O(logn)
         }
@@ -109,7 +121,11 @@ int main()
     int u, v, w; // extremos das arestas, e peso de cada aresta
     for(int i = 0; i < m; i++)
     {
-        cin >> u >> v >> w;
+        cin >> u  >> v  >> w;
+
+        u--;
+        v--;
+        
         int contador = 0, continua = 0;
         for(vector<vii>::iterator it = LA.begin(); it != LA.end() && continua < 2; ++it)
         {
@@ -131,5 +147,6 @@ int main()
     }
  
     cout << "Custo da AGM: " << prim() << endl;
+    cout << "Custo da AGM: " << prim() + acrescimo << endl;
     return 0;
 }
