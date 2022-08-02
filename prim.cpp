@@ -110,6 +110,11 @@ int prim()
 
 int main()
 {
+
+  int testes;
+  cin >> testes;
+  for (int i = 0 ; i < testes; i++)
+  {
     cin >> n >> m;
  
     for(int i = 0; i < n; i++)
@@ -148,5 +153,6 @@ int main()
  
     cout << "Custo da AGM: " << prim() << endl;
     cout << "Custo da AGM: " << prim() + acrescimo << endl;
+  }
     return 0;
 }
